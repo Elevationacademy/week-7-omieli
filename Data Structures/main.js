@@ -5,21 +5,38 @@ class UniqueArray {
     this.length = 0;
   }
 
-  exists(item) {
-    return this.uniqueItem[item] ? true : false;
-  }
+
 
   add(item) {
-      if (!this.uniqeItem[item]) {
-          this.uniqeItem[this.length] = item;
-          this.length++
+    if (!this.exists(item)) {
+      this.uniqeItem[item] = true;
+      this.uniqueStuffs[this.length] = item;
+      this.length++;
     }
   }
 
-  showAll() {}
+  exists(item) {
+    if (this.uniqeItem[item]) return true;
+    else return false;
+    }
+    
+  showAll() {
+    console.log(this.uniqueStuffs);
+  }
 
-  get(index) {}
+    get(index) {
+        if (this.length < index) return false;
+        else return this.uniqueStuffs[index]
+  }
 }
 
 const uniqueStuff = new UniqueArray();
 uniqueStuff.add("toy");
+uniqueStuff.showAll(); //prints ["toy"]
+uniqueStuff.add("toy");
+uniqueStuff.showAll(); //prints ["toy"]
+uniqueStuff.exists("toy"); //returns true
+uniqueStuff.add("poster");
+uniqueStuff.add("hydrogen");
+uniqueStuff.showAll();
+console.log(uniqueStuff.get(2)) //prints "hydrogen"
